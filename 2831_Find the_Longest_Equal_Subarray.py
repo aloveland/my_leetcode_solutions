@@ -46,7 +46,6 @@ class Solution:
             totals[n] += 1
             prefixes[n][i-1] = totals[n] - 1
             prefixes[n][i] = totals[n]
-            curr = totals[n]
             prev[n].append(i)
             while prev[n] and ((i - prev[n][0]) - (prefixes[n][i] - prefixes[n][prev[n][0] - 1])) + 1 > k:
                 prev[n].popleft()
