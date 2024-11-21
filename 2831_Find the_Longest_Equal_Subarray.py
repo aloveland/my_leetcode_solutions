@@ -39,12 +39,10 @@ Constraints:
 class Solution:
     def longestEqualSubarray(self, nums: List[int], k: int) -> int:
         prev = defaultdict(deque)
-        prefixes = {}
+        prefixes = defaultdict(dict)
         totals = defaultdict(int)
         res = 0
         for i, n in enumerate(nums):
-            if n not in prefixes:
-                prefixes[n] = {}
             totals[n] += 1
             prefixes[n][i-1] = totals[n] - 1
             prefixes[n][i] = totals[n]
