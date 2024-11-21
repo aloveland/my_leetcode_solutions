@@ -1,5 +1,7 @@
-"""2831. Find the Longest Equal Subarray
+"""
+2831. Find the Longest Equal Subarray
 Medium
+
 You are given a 0-indexed integer array nums and an integer k.
 
 A subarray is called equal if all of its elements are equal. Note that the empty subarray is an equal subarray.
