@@ -1,4 +1,5 @@
-"""2598. Smallest Missing Non-negative Integer After Operations
+"""
+2598. Smallest Missing Non-negative Integer After Operations
 
 Medium
 You are given a 0-indexed integer array nums and an integer value.
