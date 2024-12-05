@@ -49,43 +49,22 @@ class Solution:
                     fill.append([i,j])
                 elif grid[i][j] > 1:
                     excess.append([i,j])
-        dist = {}
-        dirs = [[0,1],[1,0],[-1,0],[0,-1]]
-        seen = set()
-        def bfs(start):
-            q = collections.deque()
-            q.append(start)
-            distance = 0
-            while q:
-                for i in range(len(q)):
-                    node = q.popleft()
-                    x,y = node
-                    seen.add(node)
-                    dist[(start,node)] = min(dist.get((start,node),inf), distance)
-                    for r,c in dirs:
-                        if 0 <= x + r < n and 0 <= y + c < m and (x + r, y + c) not in seen:
-                            q.append((x + r, y + c))
-                distance += 1
-                     
-        for i in range(m):
-            for j in range(n):
-                bfs((i,j))
-                seen.clear()
-        excess_length = len(excess)
-        fill_length = len(fill)
+        def dist(start,dest):
+            return abs(start[0] - dest[0]) + abs(start[1] - dest[1])
+        e,f = len(excess), len(fill)
         @cache
         def dp(x, mask):
-            if x >= excess_length:
+            if x >= e:
                 return 0
             ans = inf
-            for i in range(fill_length):
+            for i in range(f):
                 if not(1 << i & mask):
                     src,dest = tuple(excess[x]), tuple(fill[i])
                     grid[excess[x][0]][excess[x][1]] -= 1
                     if grid[excess[x][0]][excess[x][1]] > 1:
-                        ans = min(ans, dp(x, 1 << i | mask) + dist[(src,dest)])
+                        ans = min(ans, dp(x, 1 << i | mask) + dist(src,dest))
                     else:
-                        ans = min(ans, dp(x + 1, 1 << i | mask) + dist[(src,dest)])
+                        ans = min(ans, dp(x + 1, 1 << i | mask) + dist(src,dest))
                     grid[excess[x][0]][excess[x][1]] += 1
             return ans
         res = dp(0,0)
