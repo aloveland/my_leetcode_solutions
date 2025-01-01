@@ -37,7 +37,7 @@ The only possible split is: "g", "g", "g", and "g".
 
 Constraints:
 
-1 <= word.length <= 5 * 103
+1 <= word.length <= 5 * 10^3
 word consists only of lowercase English letters.
 1 <= numFriends <= word.length
 """
