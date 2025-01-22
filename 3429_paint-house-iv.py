@@ -43,11 +43,11 @@ The minimum cost to paint the houses so that they look beautiful is 2 + 8 + 1 + 
 
 Constraints:
 
-2 <= n <= 105
+2 <= n <= 10^5
 n is even.
 cost.length == n
 cost[i].length == 3
-0 <= cost[i][j] <= 105
+0 <= cost[i][j] <= 10^5
 """
 class Solution:
     def minCost(self, n: int, cost: List[List[int]]) -> int:
@@ -62,7 +62,7 @@ class Solution:
                 for j in range(3):
                     if 1 << j & mask2 or i == j:
                         continue
-                    ans = min(ans, dp(x + 1, 1 << i | 0, 1 << j | 0) + cost[x][i] + cost[n - x - 1][j])
+                    ans = min(ans, dp(x + 1, 1 << i, 1 << j) + cost[x][i] + cost[n - x - 1][j])
             return ans
         return dp(0,0,0)
         
